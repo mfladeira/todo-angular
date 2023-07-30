@@ -1,0 +1,32 @@
+<div class="todo-container">
+  <div class="box">
+    <app-input
+      placeholder="Add a new task"
+      (onChange)="keyPressEvent($event)"
+      [value]="value"
+    ></app-input>
+
+    <div class="list-of-todo">
+      <div class="todo" *ngFor="let todo of listOfTodos">
+        <div>
+          <input
+            type="checkbox"
+            [name]="todo.content"
+            [id]="todo.content"
+            (change)="checkItem(todo.id)"
+          />
+          <label [for]="todo.content">{{ todo.content }}</label>
+          <!-- <input *ngIf="true" type="text" [value]="todo.content"/> -->
+        </div>
+        <div>
+          <fa-icon [icon]="faEdit" class="icon" size="sm"></fa-icon>
+          <fa-icon
+            [icon]="faRemove"
+            class="icon"
+            (click)="deleteItem(todo.id)"
+          ></fa-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

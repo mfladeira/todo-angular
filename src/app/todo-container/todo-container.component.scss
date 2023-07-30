@@ -1,0 +1,42 @@
+.todo-container {
+  height: 100vh;
+  background-color: gainsboro;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .box {
+    width: 25%;
+    height: 50%;
+    background-color: aliceblue;
+    padding: 25px 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px rgb(187, 186, 186);
+  }
+
+  .list-of-todo {
+    margin-top: 15px;
+
+    .todo {
+      display: flex;
+      margin: 8px 0;
+      justify-content: space-between;
+
+      label {
+        font-size: 15px;
+        margin-left: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #454545;
+      }
+
+      .icon {
+        margin: 0 6px;
+        cursor: pointer;
+
+        &:last-child {
+          color: #fb5d5d;
+        }
+      }
+    }
+  }
+}
