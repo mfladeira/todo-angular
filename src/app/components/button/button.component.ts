@@ -7,5 +7,5 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ButtonComponent {
   @Input() content = '';
-  @Output() onClick = new EventEmitter();
+  @Output() clickEvent = new EventEmitter();
 }
