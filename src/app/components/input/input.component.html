@@ -1,7 +1,1 @@
-<input
-  type="text"
-  [value]="value"
-  (keypress)="onChange.emit($event)"
-  [placeholder]="placeholder"
-  class="input"
-/>
+<input type="text" [value]="value" (keypress)="changeInput.emit($event)" [placeholder]="placeholder" class="input" />
