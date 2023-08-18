@@ -6,7 +6,7 @@
   align-items: center;
 
   .box {
-    width: 25%;
+    min-width: 350px;
     height: 50%;
     background-color: aliceblue;
     padding: 25px 15px;
@@ -19,22 +19,46 @@
 
     .todo {
       display: flex;
-      margin: 8px 0;
+      align-items: center;
       justify-content: space-between;
+      margin: 8px 0;
 
-      label {
-        font-size: 15px;
-        margin-left: 5px;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #454545;
+      .containerCheckbox {
+        display: flex;
+        align-items: center;
+
+        input {
+          width: 16px;
+          height: 16px;
+        }
+        
+        .checked {
+          text-decoration: line-through;
+        }
+
+        label {
+          font-size: 16px;
+          margin-left: 8px;
+          font-family: Arial, Helvetica, sans-serif;
+          color: #454545;
+        }
       }
 
-      .icon {
-        margin: 0 6px;
-        cursor: pointer;
+      .containerIcons {
+        display: flex;
+        align-items: center;
 
-        &:last-child {
-          color: #fb5d5d;
+        .icon {
+          font-size: 16px;
+          margin: 0 6px;
+          cursor: pointer;
+  
+          &:last-child {
+          margin: 0 6px;
+  
+            color: #fb5d5d;
+            font-size: 20px;
+          }
         }
       }
     }

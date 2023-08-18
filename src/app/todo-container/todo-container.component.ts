@@ -8,13 +8,15 @@ import { TodoDataService } from '../todo-data.service';
   styleUrls: ['./todo-container.component.scss']
 })
 export class TodoContainerComponent {
-  listOfTodos = this.todoService.getItems();
-
   constructor(private todoService: TodoDataService) { }
+
+  listOfTodos = this.todoService.getItems();
+  value = '';
 
   faEdit = faEdit;
   faRemove = faRemove;
-  value = '';
+
+  editTodoId: number | undefined;
 
   keyPressEvent(event: any) {
     if (event.key === 'Enter') {
@@ -38,5 +40,13 @@ export class TodoContainerComponent {
 
   checkItem(id: number) {
     this.todoService.checkItem(id);
+  }
+
+  editItem(id: number) {
+    this.editTodoId = id;
+  }
+
+  updateItem(content: any) {
+    const text = content.target.value + content.key
   }
 }
