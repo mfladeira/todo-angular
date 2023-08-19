@@ -46,7 +46,10 @@ export class TodoContainerComponent {
     this.editTodoId = id;
   }
 
-  updateItem(content: any) {
-    const text = content.target.value + content.key
+  updateItem(event: any, idTodo: number) {
+    if (event.key === 'Enter') {
+      this.todoService.updateItem(idTodo, event.target.value);
+      this.editTodoId = undefined;
+    }
   }
 }

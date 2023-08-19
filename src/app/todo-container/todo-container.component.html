@@ -1,5 +1,6 @@
 <div class="todo-container">
   <div class="box">
+
     <app-input placeholder="Add a new task" (changeInput)="keyPressEvent($event)" [value]="value" />
 
     <div class="list-of-todo">
@@ -11,7 +12,7 @@
             {{ todo.content }}
           </label>
           <app-input placeholder="Add a new task" [value]="todo.content" *ngIf="editTodoId === todo.id"
-            (changeInput)="updateItem($event)" />
+            (changeInput)="updateItem($event, todo.id)" />
         </div>
 
         <div class="containerIcons">

@@ -30,4 +30,9 @@ export class TodoDataService {
     const index = this.items.findIndex(itemFilter => itemFilter.id === id);
     this.items[index].isChecked = !this.items[index].isChecked;
   }
+
+  updateItem(id: number, text: string) {
+    const index = this.items.findIndex(itemFilter => itemFilter.id === id);
+    this.items[index].content = text;
+  }
 }
