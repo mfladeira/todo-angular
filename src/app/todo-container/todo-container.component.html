@@ -7,12 +7,13 @@
       <div class="todo" *ngFor="let todo of listOfTodos">
 
         <div class="containerCheckbox">
-          <input type="checkbox" [name]="todo.content" [id]="todo.content" (change)="checkItem(todo.id)" />
+          <input type="checkbox" [name]="todo.content" [id]="todo.content" (change)="checkItem(todo)"
+            [checked]="todo.isChecked" />
           <label [for]="todo.content" [class.checked]="todo.isChecked" *ngIf="!(editTodoId === todo.id)">
             {{ todo.content }}
           </label>
           <app-input placeholder="Add a new task" [value]="todo.content" *ngIf="editTodoId === todo.id"
-            (changeInput)="updateItem($event, todo.id)" />
+            (changeInput)="updateItem($event, todo)" />
         </div>
 
         <div class="containerIcons">

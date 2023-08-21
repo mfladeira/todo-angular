@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-interface Item {
+export interface Item {
   id: number,
   content: string,
   isChecked: boolean
@@ -11,28 +11,31 @@ interface Item {
 })
 export class TodoDataService {
 
-  items: Item[] = [];
+  getItems(): Item[] {
+    const localStorageArray = Object.entries(localStorage);
 
-  getItems() {
-    return this.items;
+    const result = localStorageArray.map(([key, value]) => JSON.parse(value));
+
+    return result;
   }
 
   addItem(item: Item) {
-    this.items.push(item);
+    console.log(item);
+
+    localStorage.setItem(`${item.id}`, JSON.stringify({ id: item.id, 'content': item.content, 'isChecked': item.isChecked }));
   }
 
   deleteItem(id: number) {
-    const index = this.items.findIndex(itemFilter => itemFilter.id === id);
-    this.items.splice(index, 1);
+    localStorage.removeItem(`${id}`);
   }
 
-  checkItem(id: number) {
-    const index = this.items.findIndex(itemFilter => itemFilter.id === id);
-    this.items[index].isChecked = !this.items[index].isChecked;
+  checkItem(todo: Item) {
+    localStorage.removeItem(`${todo.id}`);
+    localStorage.setItem(`${todo.id}`, JSON.stringify({ id: todo.id, 'content': todo.content, 'isChecked': !todo.isChecked }));
   }
 
-  updateItem(id: number, text: string) {
-    const index = this.items.findIndex(itemFilter => itemFilter.id === id);
-    this.items[index].content = text;
+  updateItem(todo: Item, text: string) {
+    localStorage.removeItem(`${todo.id}`);
+    localStorage.setItem(`${todo.id}`, JSON.stringify({ id: todo.id, 'content': text, 'isChecked': todo.isChecked }));
   }
 }

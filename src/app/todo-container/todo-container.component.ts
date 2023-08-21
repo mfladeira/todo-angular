@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { faEdit, faRemove } from '@fortawesome/free-solid-svg-icons';
-import { TodoDataService } from '../todo-data.service';
-
+import { Item, TodoDataService } from '../todo-data.service';
 @Component({
   selector: 'app-todo-container',
   templateUrl: './todo-container.component.html',
@@ -20,7 +19,7 @@ export class TodoContainerComponent {
 
   keyPressEvent(event: any) {
     if (event.key === 'Enter') {
-      const id = this.listOfTodos.length > 0 ? this.listOfTodos[this.listOfTodos.length - 1].id + 1 : 0;
+      const id = Math.floor(Math.random() * 1000);
 
       this.todoService.addItem({
         id,
@@ -29,6 +28,7 @@ export class TodoContainerComponent {
       });
 
       this.value = '';
+      this.listOfTodos = this.todoService.getItems();
     } else {
       this.value = event.target.value;
     }
@@ -36,20 +36,23 @@ export class TodoContainerComponent {
 
   deleteItem(item: number) {
     this.todoService.deleteItem(item);
+    this.listOfTodos = this.todoService.getItems();
   }
 
-  checkItem(id: number) {
-    this.todoService.checkItem(id);
+  checkItem(todo: Item) {
+    this.todoService.checkItem(todo);
+    this.listOfTodos = this.todoService.getItems();
   }
 
   editItem(id: number) {
     this.editTodoId = id;
   }
 
-  updateItem(event: any, idTodo: number) {
+  updateItem(event: any, todo: Item) {
     if (event.key === 'Enter') {
-      this.todoService.updateItem(idTodo, event.target.value);
+      this.todoService.updateItem(todo, event.target.value);
       this.editTodoId = undefined;
+      this.listOfTodos = this.todoService.getItems();
     }
   }
 }
