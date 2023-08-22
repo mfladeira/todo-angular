@@ -16,6 +16,7 @@ export class TodoContainerComponent {
   faRemove = faRemove;
 
   editTodoId: number | undefined;
+  filterTodo: 'all' | 'pending' | 'completed' = 'all';
 
   keyPressEvent(event: any) {
     if (event.key === 'Enter') {

@@ -14,10 +14,37 @@
     box-shadow: 2px 2px rgb(187, 186, 186);
   }
 
-  .containerButton{
+  hr {
+    border: none;
+    background-color: #d7d6d6;
+    height: 1px;
+  }
+
+  .containerButton {
     display: flex;
-    justify-content: flex-end;
-    margin-top: 8px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    margin-bottom: 14px;
+
+    ul {
+      display: flex;
+      list-style-type: none;
+
+      li {
+        cursor: pointer;
+        margin-right: 8px;
+        margin-left: 3px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: #454545;
+      }
+
+      li.active {
+        text-decoration: underline;
+        color: blue;
+      }
+    }
   }
 
   .list-of-todo {
@@ -37,7 +64,7 @@
           width: 16px;
           height: 16px;
         }
-        
+
         .checked {
           text-decoration: line-through;
         }
@@ -58,10 +85,10 @@
           font-size: 16px;
           margin: 0 6px;
           cursor: pointer;
-  
+
           &:last-child {
-          margin: 0 6px;
-  
+            margin: 0 6px;
+
             color: #fb5d5d;
             font-size: 20px;
           }

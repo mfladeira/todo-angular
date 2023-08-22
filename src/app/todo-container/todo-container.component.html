@@ -1,29 +1,75 @@
 <div class="todo-container">
   <div class="box">
 
-    <app-input placeholder="Add a new task" (changeInput)="keyPressEvent($event)" [value]="value" />
+    <app-input placeholder="Add a new task" (changeInput)="keyPressEvent($event)" [value]="value"
+      id="InputValueInput" />
+
     <div class="containerButton">
+      <ul>
+        <li [class.active]="filterTodo === 'all'" (click)="filterTodo = 'all'">All</li>
+        <li [class.active]="filterTodo === 'pending'" (click)="filterTodo = 'pending'">Pending</li>
+        <li [class.active]="filterTodo === 'completed'" (click)="filterTodo = 'completed'">Completed</li>
+      </ul>
       <app-button content="Clear all" (clickEvent)="clearTodo()"></app-button>
     </div>
+
+    <hr>
+
     <div class="list-of-todo">
-      <div class="todo" *ngFor="let todo of listOfTodos">
-
-        <div class="containerCheckbox">
-          <input type="checkbox" [name]="todo.content" [id]="todo.content" (change)="checkItem(todo)"
-            [checked]="todo.isChecked" />
-          <label [for]="todo.content" [class.checked]="todo.isChecked" *ngIf="!(editTodoId === todo.id)">
-            {{ todo.content }}
-          </label>
-          <app-input placeholder="Add a new task" [value]="todo.content" *ngIf="editTodoId === todo.id"
-            (changeInput)="updateItem($event, todo)" />
+      <div *ngFor="let todo of listOfTodos" [ngSwitch]="filterTodo">
+        <div *ngSwitchDefault class="todo">
+          <div class="containerCheckbox">
+            <input type="checkbox" [name]="todo.content" [id]="todo.content" (change)="checkItem(todo)"
+              [checked]="todo.isChecked" />
+            <label [for]="todo.content" [class.checked]="todo.isChecked" *ngIf="!(editTodoId === todo.id)">
+              {{ todo.content }}
+            </label>
+            <app-input placeholder="Add a new task" [value]="todo.content" *ngIf="editTodoId === todo.id"
+              (changeInput)="updateItem($event, todo)" />
+          </div>
+          <div class="containerIcons">
+            <fa-icon [icon]="faEdit" class="icon" (click)="editItem(todo.id)"></fa-icon>
+            <fa-icon [icon]="faRemove" class="icon" (click)="deleteItem(todo.id)"></fa-icon>
+          </div>
         </div>
 
-        <div class="containerIcons">
-          <fa-icon [icon]="faEdit" class="icon" (click)="editItem(todo.id)"></fa-icon>
-          <fa-icon [icon]="faRemove" class="icon" (click)="deleteItem(todo.id)"></fa-icon>
+        <div *ngSwitchCase="'pending'">
+          <div *ngIf="!todo.isChecked" class="todo">
+            <div class="containerCheckbox">
+              <input type="checkbox" [name]="todo.content" [id]="todo.content" (change)="checkItem(todo)"
+                [checked]="todo.isChecked" />
+              <label [for]="todo.content" [class.checked]="todo.isChecked" *ngIf="!(editTodoId === todo.id)">
+                {{ todo.content }}
+              </label>
+              <app-input placeholder="Add a new task" [value]="todo.content" *ngIf="editTodoId === todo.id"
+                (changeInput)="updateItem($event, todo)" />
+            </div>
+            <div class="containerIcons">
+              <fa-icon [icon]="faEdit" class="icon" (click)="editItem(todo.id)"></fa-icon>
+              <fa-icon [icon]="faRemove" class="icon" (click)="deleteItem(todo.id)"></fa-icon>
+            </div>
+          </div>
         </div>
 
+        <div *ngSwitchCase="'completed'">
+          <div *ngIf="todo.isChecked" class="todo">
+            <div class="containerCheckbox">
+              <input type="checkbox" [name]="todo.content" [id]="todo.content" (change)="checkItem(todo)"
+                [checked]="todo.isChecked" />
+              <label [for]="todo.content" [class.checked]="todo.isChecked" *ngIf="!(editTodoId === todo.id)">
+                {{ todo.content }}
+              </label>
+              <app-input placeholder="Add a new task" [value]="todo.content" *ngIf="editTodoId === todo.id"
+                (changeInput)="updateItem($event, todo)" />
+            </div>
+            <div class="containerIcons">
+              <fa-icon [icon]="faEdit" class="icon" (click)="editItem(todo.id)"></fa-icon>
+              <fa-icon [icon]="faRemove" class="icon" (click)="deleteItem(todo.id)"></fa-icon>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </div>
