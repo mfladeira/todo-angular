@@ -20,8 +20,6 @@ export class TodoDataService {
   }
 
   addItem(item: Item) {
-    console.log(item);
-
     localStorage.setItem(`${item.id}`, JSON.stringify({ id: item.id, 'content': item.content, 'isChecked': item.isChecked }));
   }
 
@@ -37,5 +35,9 @@ export class TodoDataService {
   updateItem(todo: Item, text: string) {
     localStorage.removeItem(`${todo.id}`);
     localStorage.setItem(`${todo.id}`, JSON.stringify({ id: todo.id, 'content': text, 'isChecked': todo.isChecked }));
+  }
+
+  clearTodo() {
+    localStorage.clear();
   }
 }

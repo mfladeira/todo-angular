@@ -2,7 +2,9 @@
   <div class="box">
 
     <app-input placeholder="Add a new task" (changeInput)="keyPressEvent($event)" [value]="value" />
-
+    <div class="containerButton">
+      <app-button content="Clear all" (clickEvent)="clearTodo()"></app-button>
+    </div>
     <div class="list-of-todo">
       <div class="todo" *ngFor="let todo of listOfTodos">
 

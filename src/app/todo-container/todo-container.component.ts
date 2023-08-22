@@ -55,4 +55,9 @@ export class TodoContainerComponent {
       this.listOfTodos = this.todoService.getItems();
     }
   }
+
+  clearTodo() {
+    this.todoService.clearTodo();
+    this.listOfTodos = this.todoService.getItems();
+  }
 }
